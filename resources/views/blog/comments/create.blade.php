@@ -6,7 +6,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10">
-                <h1>Создание поста</h1>
+                <h1>Коментарий к посту
+                    <strong>
+                        {{ $post->title }}
+                    </strong>
+                </h1>
             </div>
             <div class="col-md-1">
                 <a href="{{ url()->previous() }}"><button class="btn btn-dark">Назад</button></a>
@@ -18,25 +22,24 @@
 @section('content')
     <div class="container">
         <form method="post" class="form-group">
-            @csrf
             @method('POST')
-            @include('includes.errors')
+            @csrf
             <div class="form-group">
-                <label for="">Название</label>
-                <input name="title" type="text" class="form-control" value="{{ old('title') }}">
+                <label for="title">Название</label>
+                <input type="text" name="title" id="title" class="form-control" value="{{ old('title') }}">
             </div>
             <div class="form-group">
-                <label for="">Пост</label>
-                <textarea name="description" type="text" class="form-control">{{ old('description') }}</textarea>
+                <label for="editor">Коментарий</label>
+                <textarea name="description" id="editor" cols="30" rows="10">{{ old('description') }}</textarea>
             </div>
             <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-            <button type="submit" class="btn btn-success">Создать</button>
+            <input type="hidden" name="post_id" value="{{ $post->id }}">
+            <button class="btn btn-success">Оставить комментарий</button>
         </form>
     </div>
 @stop
 
 @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')

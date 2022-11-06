@@ -320,9 +320,9 @@ return [
 //        ],
         ['header' => 'Entities'],
         [
-            'text' => 'Posts',
-            'url'  => '/posts',
-            'icon' => ''
+            'text'  => 'Posts',
+            'url'   => '/admin/posts',
+            'icon'  => ''
         ],
 //        [
 //            'text' => 'change_password',

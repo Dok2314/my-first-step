@@ -8,6 +8,9 @@
             <div class="col-md-10">
                 <h1>Просмотр поста <strong>"{{ $post->title }}</strong>"</h1>
             </div>
+            <div class="col-md-1">
+                <a href="{{ url()->previous() }}"><button class="btn btn-dark">Назад</button></a>
+            </div>
         </div>
     </div>
 @stop
@@ -34,6 +37,11 @@
                         <hr>
                         <p class="card-text">
                             Последнее обновление: {{ $post->updated_at->toDateTimeString() }}
+                        </p>
+                        <p class="card-text">
+                            <a href="{{ route('comments.index', $post) }}">
+                                Коментарии ({{ $post->comments()->count() }})
+                            </a>
                         </p>
                     </div>
                 </div>

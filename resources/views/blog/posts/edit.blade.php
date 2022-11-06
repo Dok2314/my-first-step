@@ -5,8 +5,11 @@
 @section('content_header')
     <div class="container">
         <div class="row">
-            <div class="col-md-10">
+            <div class="col-md-11">
                 <h1>Редактирование поста <strong>"{{ $post->title }}</strong>"</h1>
+            </div>
+            <div class="col-md-1">
+                <a href="{{ url()->previous() }}"><button class="btn btn-dark">Назад</button></a>
             </div>
         </div>
     </div>
@@ -27,6 +30,7 @@
                 <textarea name="description" type="text" class="form-control">{{ old('description', $post->description) }}</textarea>
             </div>
             <input type="hidden" name="user_id" value="{{ $post->user->id }}">
+            <br>
             <button type="submit" class="btn btn-success">Сохранить</button>
         </form>
     </div>

@@ -19,9 +19,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('ho
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::group(['middleware' => 'auth', 'prefix' => 'posts', 'as' => 'posts.'], function (){
+Route::group(['middleware' => 'auth', 'prefix' => 'admin/posts', 'as' => 'posts.'], function (){
     Route::get('/', [BlogControllers\PostsController::class, 'index'])
         ->name('index');
 
@@ -47,3 +45,14 @@ Route::group(['middleware' => 'auth', 'prefix' => 'posts', 'as' => 'posts.'], fu
     });
 });
 
+Route::group(['middleware' => 'auth', 'prefix' => 'comments', 'as' => 'comments.'], function (){
+    Route::group(['prefix' => '{post}'], function () {
+        Route::get('/', [BlogControllers\CommentsController::class, 'index'])
+            ->name('index');
+
+        Route::get('create', [BlogControllers\CommentsController::class, 'create'])
+            ->name('create');
+
+        Route::post('create', [BlogControllers\CommentsController::class, 'store']);
+    });
+});
